@@ -1,0 +1,8 @@
+apiVersion: core.spinoperator.dev/v1alpha1
+kind: SpinApp
+metadata:
+  name: sphinx
+spec:
+  image: "ghcr.io/codeitlikemiley/sphinx:0.2.0"
+  executor: containerd-shim-spin
+  replicas: 2
