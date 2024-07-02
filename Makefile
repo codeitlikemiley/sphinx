@@ -39,7 +39,12 @@ deploy:
 # Port forward the service
 .PHONY: open
 open:
-	kubectl port-forward services/$(APP_NAME) 8080:8080
+	kubectl port-forward svc/$(APP_NAME) 8080:80
+
+# Get Pods
+.PHONY: pods
+pods:
+	kubectl get pods
 
 # Run the project
 .PHONY: run
@@ -50,7 +55,7 @@ run:
 # Stop all pods
 .PHONY: stop
 stop:
-	kubectl delete -f spinapp.yaml
+	kubectl delete -f spinapp.yaml && lsof -ti:8080 | xargs kill
 
 # Clean the project
 .PHONY: clean
