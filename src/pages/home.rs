@@ -1,4 +1,4 @@
-use leptos::{server_fn::error::NoCustomError, *};
+use leptos::*;
 use leptos_router::*;
 
 /// Renders the home page of your application.
