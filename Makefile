@@ -26,6 +26,11 @@ build:
 	spin build
 	@echo "Build complete for $(APP_NAME) version $(APP_VERSION)"
 
+.PHONY: up
+up:
+	spin up
+	@echo "Running $(APP_NAME) version $(APP_VERSION) locally at port 3000"
+
 # Push Build Image to Registry
 .PHONY: registry
 registry:
