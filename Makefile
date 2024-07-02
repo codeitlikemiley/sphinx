@@ -77,3 +77,9 @@ clean:
 .PHONY: reset
 reset: stop clean
 	@echo "Reset complete for $(APP_NAME)"
+
+# Clean the project
+.PHONY: check
+check:
+	cargo clippy --no-deps --allow-dirty --allow-staged --fix
+	@echo "Clean complete for $(APP_NAME)"
