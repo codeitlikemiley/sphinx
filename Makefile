@@ -41,6 +41,11 @@ deploy:
 open:
 	kubectl port-forward svc/$(APP_NAME) 8080:80
 
+# Close port
+.PHONY: close
+close:
+	lsof -ti:8080 | xargs kill
+
 # Get Pods
 .PHONY: pods
 pods:
@@ -55,7 +60,7 @@ run:
 # Stop all pods
 .PHONY: stop
 stop:
-	kubectl delete -f spinapp.yaml && lsof -ti:8080 | xargs kill
+	kubectl delete -f spinapp.yaml
 
 # Clean the project
 .PHONY: clean
