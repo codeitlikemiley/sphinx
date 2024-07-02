@@ -37,8 +37,8 @@ deploy:
 	spin kube deploy --from ghcr.io/$(GH_USER)/$(APP_NAME):$(APP_VERSION)
 
 # Port forward the service
-.PHONY: port-forward
-port-forward:
+.PHONY: open
+open:
 	kubectl port-forward services/$(APP_NAME) 8080:8080
 
 # Run the project
