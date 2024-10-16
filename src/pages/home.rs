@@ -5,29 +5,21 @@ use leptos_router::*;
 #[component]
 pub fn Home() -> impl IntoView {
     // Creates a reactive value to update the button
-    let increment_count = create_server_action::<UpdateCount>();
+    let counter = create_server_action::<UpdateCount>();
 
-    let count = create_resource(
-        move || {
-            (
-                increment_count.version().get(),
-                // clear.version().get(),
-            )
-        },
-        |_| get_count(),
-    );
+    let count = create_resource(move || (counter.version().get(),), |_| get_count());
 
     view! {
-        <picture class="img">
-            <source srcset="https://raw.githubusercontent.com/leptos-rs/leptos/main/docs/logos/Leptos_logo_pref_dark_RGB.svg" media="(prefers-color-scheme: dark)" />
-            <img src="https://raw.githubusercontent.com/leptos-rs/leptos/main/docs/logos/Leptos_logo_RGB.svg" alt="Leptos Logo" height="200" width="400" />
-        </picture>
+        <div class="flex flex-col items-center justify-center">
+            <h1 class="text-5xl text-pink-500 hover:text-pink-700">"Uriah"</h1>
 
-        <h1>"Welcome to Leptos"</h1>
+            <ActionForm action=counter>
+                <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+                    "Click Me: " {move || count.get()}
+                </button>
+            </ActionForm>
 
-        <ActionForm action=increment_count>
-            <button >"Click Me: " {move || count.get()}</button>
-        </ActionForm>
+        </div>
     }
 }
 
@@ -57,9 +49,7 @@ pub async fn get_count() -> Result<u64, ServerFnError> {
     let stored_count: u64 = store
         .get_json("sphinx_count")
         .map_err(|e| ServerFnError::new(e))?
-        .ok_or_else(|| {
-            ServerFnError::<NoCustomError>::ServerError("Failed to get count".to_string())
-        })?;
+        .ok_or_else(|| ServerFnError::new("No stored count found, please increment first"))?;
 
     println!("Got stored {stored_count}");
 

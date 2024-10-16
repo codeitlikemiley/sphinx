@@ -12,17 +12,17 @@ pub fn AppRouter() -> impl IntoView {
 
     view! {
         // injects a stylesheet into the document <head>
-        <Stylesheet id="leptos" href="/pkg/sphinx.css"/>
+        <Stylesheet id="leptos" href="/pkg/sphinx.css" />
 
         // sets the document title
-        <Title text="Welcome to Leptos"/>
+        <Title text="Welcome to Leptos" />
 
         // content for this welcome page
         <Router>
             <main>
                 <Routes>
-                    <Route path="" view=Home/>
-                    <Route path="/*any" view=NotFound/>
+                    <Route path="" view=Home />
+                    <Route path="/*any" view=NotFound />
                 </Routes>
             </main>
         </Router>

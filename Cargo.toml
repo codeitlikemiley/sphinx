@@ -9,18 +9,18 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-anyhow = "1"
+anyhow = "1.0.89"
 cfg-if = "1"
 console_error_panic_hook = "0.1.7"
-http = "1.1.0"
-leptos = "0.6.12"
-leptos_integration_utils = { version = "0.6.12", optional = true }
-leptos_meta = "0.6.12"
-leptos_router = "0.6.12"
+http = "^1.1.0"
+leptos = "0.6.15"
+leptos_integration_utils = { version = "0.6.15", optional = true }
+leptos_meta = "0.6.15"
+leptos_router = "0.6.15"
 leptos-spin = { version = "0.2.0", optional = true }
-serde = "1.0"
+serde = "1.0.210"
 spin-sdk = { version = "3.0.1", optional = true }
-wasm-bindgen = { version = "0.2.92", optional = true }
+wasm-bindgen = { version = "0.2.93", optional = true }
 
 [workspace]
 
@@ -53,7 +53,13 @@ panic = "abort"
 
 [package.metadata.leptos]
 # [Optional] The source CSS file. If it ends with .sass or .scss then it will be compiled by dart-sass into CSS. The CSS is optimized by Lightning CSS before being written to <site-root>/<site-pkg>/app.css
-style-file = "public/main.css"
+
+# this is all the tailwind classes we use for development
+style-file = "public/tailwind.css"
+
+# if you want to use JIT mode for tailwind
+#tailwind-input-file = "input.css"
+#tailwind-config-file = "tailwind.config.js"
 
 # Assets source dir. All files found here will be copied and synchronized to site-root.
 # The assets-dir cannot have a sub directory with the same name/path as site-pkg-dir.

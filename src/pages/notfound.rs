@@ -17,7 +17,5 @@ pub fn NotFound() -> impl IntoView {
         resp.set_status(404);
     }
 
-    view! {
-        <h1>"Uh oh!" <br/> "We couldn't find that page!"</h1>
-    }
+    view! { <h1>"Uh oh!" <br /> "We couldn't find that page!"</h1> }
 }
